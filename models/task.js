@@ -1,0 +1,16 @@
+const mongoose = require('mongoose');
+
+const taskSchema = new mongoose.Schema({
+  name: { type: String, required: true, trim: true },
+  description: { type: String, default: '' },
+  deadline: { type: Date, required: true },
+  completed: { type: Boolean, default: false },
+  assignedUser: { type: String, default: '', index: true },
+  assignedUserName: { type: String, default: 'unassigned' },
+  dateCreated: { type: Date, default: Date.now, immutable: true }
+}, {
+  toJSON: { versionKey: false },
+  toObject: { versionKey: false }
+});
+
+module.exports = mongoose.model('Task', taskSchema);

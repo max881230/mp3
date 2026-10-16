@@ -9,11 +9,13 @@
     "Sujay Khandekar <khandek2@illinois.edu>"
   ],
   "engines": {
-    "node": ">=24"
+    "node": "24.x"
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test --test-concurrency=1 tests/*.test.js",
+    "test:atlas": "MP3_TEST_DATABASE=atlas node --test --test-concurrency=1 tests/*.test.js",
     "submit": "node submit.js"
   },
   "repository": {
@@ -26,6 +28,6 @@
     "mongoose": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "mongodb-memory-server": "^11.3.0"
   }
 }
